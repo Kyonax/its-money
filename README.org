@@ -8,6 +8,8 @@ Its-Money an Open-Source application for finance, and personal use (beta-version
 * Table of Content :toc:
 - [[#server-app-documentation][Server APP Documentation]]
   - [[#server-documentation][Server Documentation]]
+  - [[#server-documentation-1][Server Documentation]]
 
 * Server APP Documentation
 ** [[https://github.com/Kyonax/its-money/blob/main/server/server.org][Server Documentation]]
+** [[file:server/server.org::+DESCRIPTION: Documentation & important Information - Open Source project][Server Documentation]]
