@@ -1,0 +1,72 @@
+#+TITLE: Backend Documentation of "Its-Money"
+#+DESCRIPTION: Documentation & important Information - Open Source project
+#+AUTHOR: Kyonax - Cristian Moreno
+#+PROPERTY: head-args :tangle server.js
+#+auto_tangle: t
+
+* Table of Contents :toc:
+- [[#serverjs-information][ServerJS Information]]
+  - [[#init-constant-global-variables][Init Constant Global Variables]]
+  - [[#server-app][Server APP]]
+  - [[#initializing-server--port][Initializing Server & PORT]]
+
+* ServerJS Information
+** Init Constant Global Variables
+Main variables for the express.js application. Using Body-Parser and a new Router Object.
+#+BEGIN_SRC js :tangle yes
+const express = require("express"); // Express Framework
+const bodyParser = require("body-parser"); // NodeJs body parsing middleware
+const router = express.Router(); // New Router Object
+#+END_SRC
+
+** Server APP
+*** Init Files & Libraries
+`functions.js` is a custom and personal library, contains custom methods that I'll use on this application.
+#+BEGIN_SRC js :tangle yes
+const EXE = require("./misc/functions");
+#+END_SRC
+
+DOTENV Library, nothing to say here.
+#+BEGIN_SRC js :tangle yes
+require("dotenv").config();
+#+END_SRC
+
+Initialization of the Server APP
+#+BEGIN_SRC js :tangle yes
+const app = express();
+#+END_SRC
+
+*** Configuration
+Basic configuration for the REST API.
+#+BEGIN_SRC js :tangle yes
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + "public"));
+#+END_SRC
+
+*** APP Methods
+**** GET /
+Home method, custom answer for the home route of the API. This is method is used for testing, and for check the health of the application.
+#+BEGIN_SRC js :tangle yes
+app.get('/', (req, res) => {
+  return res.status(200).json({
+   "its-money": "Support the project on => x.com/kyonax_on_tech 💀"
+  });
+});
+#+END_SRC
+
+*** Using Router
+Using the Router Object.
+#+BEGIN_SRC js :tangle yes
+app.use("/", router);
+#+END_SRC
+
+** Initializing Server & PORT
+Running APP function, with message of execution.
+#+BEGIN_SRC js :tangle yes
+var server = app.listen(process.env.PORT, function(){
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log(`REST API "its-money-server" listening at http://%s:%s`, host, port);
+})
+#+END_SRC
